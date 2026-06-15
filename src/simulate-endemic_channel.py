@@ -21,7 +21,7 @@ from scipy.optimize import minimize
 ##############
 
 challenge_year = 2026
-validation_idx = 1  # None (forecast), 1, 2, 3, 4 (validation)
+validation_idx = 4 # None (forecast), 1, 2, 3, 4 (validation)
 end_train_epiweek = 25
 start_predict_epiweek = 41
 end_predict_epiweek = 40
@@ -51,7 +51,6 @@ abs_dir = os.path.dirname(__file__)
 output_dir = os.path.join(abs_dir, f'../data/interim/model_output/sprint_{challenge_year}')
 fig_path = os.path.join(output_dir, f'fig/{ID}')
 os.makedirs(fig_path, exist_ok=True) 
-
 
 #############################################
 ## model parameter estimation & prediction ##

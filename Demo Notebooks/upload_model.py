@@ -4,11 +4,13 @@ import mosqlient as mosq
 from datetime import date
 from dotenv import load_dotenv
 
+challenge_year = 2026
+
 ##########################
 ## Put the API key here ##
 ##########################
 
-api_key = ...
+api_key = 'anabento:68ff4487-a072-4dda-b45d-a7742cc00cec'
 
 # Retrieve API key from Ana's Mosqclimate account.
 ## Log into https://mosqlimate.org using GH of @anabento.
@@ -38,7 +40,7 @@ if validation_indices:
         description = f"Validation {validx} (Cornell_BentoLab - NegBinom Endemic Channel). Authored by Tijs W. Alleman & Ana I. Bento."
         commit = "ffd84d65866020c8271669cfd71132057aa50af0"
         # load validation experiment data
-        forecast = pd.read_csv(f'../data/interim/{ID}.csv', index_col=0)
+        forecast = pd.read_csv(f'../data/interim/model_output/sprint_{challenge_year}/{ID}.csv', index_col=0)
         # get the ufs..
         ufs = forecast['adm_1'].unique().tolist()
         # ..and loop over them

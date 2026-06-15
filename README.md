@@ -1,5 +1,7 @@
 # DengueSprint_Cornell-PEH
 
+# Model: Endemic Channel
+
 ## Team and Contributors
 
 Cornell University, College of Veterinary Medicine, Department of Public and Ecosystem Health, Bento Lab

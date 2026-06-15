@@ -21,7 +21,7 @@ from scipy.optimize import minimize
 ##############
 
 challenge_year = 2026
-validation_idx = 3 # None (forecast), 1, 2, 3, 4 (validation)
+validation_idx = 4 # None (forecast), 1, 2, 3, 4 (validation)
 end_train_epiweek = 25
 start_predict_epiweek = 41
 end_predict_epiweek = 40

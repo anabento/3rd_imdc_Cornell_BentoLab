@@ -39,8 +39,8 @@ Install the `epiweeks` package into the conda environment.
 
 ## Data and Variables
 
-Only the `dengue.csv` file made available by the mosqlimate project was used. This file contains the weekly DENV incidence per epiweek and per Brazilian municipality from 2010-2025.
-
+Only the `dengue.csv` file made available by the mosqlimate project was used. This file contains the weekly DENV incidence per epiweek and per Brazilian municipality from 2010-2025. These data are not included in this GH repository because they are too large. To use this repository, download the data using the instructions under '2 - Using FTPWeb' on https://sprint.mosqlimate.org/data/ and put it in `~/data/raw/dengue.csv`.
+ 
 ## Model Training
 
 The model presents a simple baseline model which we will use to benchmark future DENV modeling efforts.

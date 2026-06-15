@@ -146,7 +146,7 @@ for ew in output['epiweek_week'].unique():
 # remove 'epiweek_week' column
 output = output.drop('epiweek_week', axis=1)
 # save the result
-output.to_csv(f'../data/interim/baseline_model-{ID}.csv')
+output.to_csv(f'../data/interim/model_output/sprint_2025/baseline_model-{ID}.csv')
 
 
 ##########################
@@ -155,7 +155,7 @@ output.to_csv(f'../data/interim/baseline_model-{ID}.csv')
 
 # Make the folder structure to save results
 ## define figure path
-fig_path=f'../data/interim/fig/{ID}/' # Path to backend
+fig_path=f'../data/interim/model_output/sprint_2025/fig/{ID}/' # Path to backend
 ## check if samples folder exists, if not, make it
 if not os.path.exists(fig_path):
     os.makedirs(fig_path)

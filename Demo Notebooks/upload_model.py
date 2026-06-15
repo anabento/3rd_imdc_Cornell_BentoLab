@@ -22,9 +22,6 @@ api_key = ...
 # Function `upload_model` of `mosqlient` deprecated (IMDC 2026)
 # Upload model by logging into https://mosqlimate.org with @anabento's GH account and adding a new model
 
-import sys
-sys.exit()
-
 #####################
 ## Upload forecast ##
 #####################

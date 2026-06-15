@@ -37,7 +37,7 @@ if validation_indices:
     # .. and loop over them
     for validx in validation_indices:
         # set correct ID and description
-        ID = f"baseline_model-validation_{validx}"
+        ID = f"endemic_channel-validation_{validx}"
         description = f"Validation {validx} (Cornell_BentoLab - NegBinom Endemic Channel). Authored by Tijs W. Alleman & Ana I. Bento."
         commit = "36c4db312b09df8dec4786cb9380617fe68de2e0"
         # load validation experiment data

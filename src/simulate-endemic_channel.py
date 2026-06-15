@@ -154,7 +154,7 @@ for ew in output['epiweek_week'].unique():
 # remove 'epiweek_week' column
 output = output.drop('epiweek_week', axis=1)
 # save the result
-output.to_csv(os.path.join(output_dir, f'baseline_model-{ID}.csv'))
+output.to_csv(os.path.join(output_dir, f'endemic_channel-{ID}.csv'))
 
 
 ##########################

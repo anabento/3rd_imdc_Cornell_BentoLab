@@ -10,4 +10,4 @@
 
 #### Sprint 2025
 
-Contains the submission for 2025
+Contains the Cornell PEH submission to the 2025 Dengue Sprint.

@@ -10,7 +10,7 @@ challenge_year = 2026
 ## Put the API key here ##
 ##########################
 
-api_key = 'anabento:68ff4487-a072-4dda-b45d-a7742cc00cec'
+api_key = ...
 
 # Retrieve API key from Ana's Mosqclimate account.
 ## Log into https://mosqlimate.org using GH of @anabento.

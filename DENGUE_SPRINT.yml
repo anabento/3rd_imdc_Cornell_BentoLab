@@ -1,11 +1,14 @@
 name: DENGUE_SPRINT
 channels:
+  - default
   - conda-forge
+  - bioconda
 dependencies:
-  - python=3.12
+  - python=3.13
   - matplotlib
   - numpy
   - pandas
   - scipy
   - jupyter
   - ipykernel
+  - epiweeks

@@ -1,5 +1,13 @@
-# Missing data
+# Data README
 
-The following data were not included on Github because they were too large,
+## Raw
 
-+ `dengue.csv` (300 Mb). Can be downloaded using the instructions under '2 - Using FTPWeb' on https://sprint.mosqlimate.org/data/.
++ `dengue.csv.gz`: Compressed dengue case counts. For an explanation of variables see: https://sprint.mosqlimate.org/data/. Can be downloaded using the instructions under '2 - Using FTPWeb' on https://sprint.mosqlimate.org/data/.
+
+## Interim
+
+### Model output
+
+#### Sprint 2025
+
+Contains the Cornell PEH submission to the 2025 Dengue Sprint.

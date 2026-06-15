@@ -58,7 +58,7 @@ def negbinom_log_likelihood(params, x, weights):
     return -np.sum(weights * nbinom.logpmf(x, r, p))
 
 # load data
-data = pd.read_csv('../data/raw/dengue.csv', dtype={'epiweek': str})
+data = pd.read_csv('../data/raw/dengue.csv.gz', compression='gzip', dtype={'epiweek': str})
 
 # aggregate by UF
 data = data[['epiweek', 'uf', 'casos']].groupby(by=['epiweek', 'uf']).sum().reset_index()

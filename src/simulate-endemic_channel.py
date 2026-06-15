@@ -21,7 +21,7 @@ from scipy.optimize import minimize
 ##############
 
 challenge_year = 2026
-validation_idx = 1 # None (forecast), 1, 2, 3, 4 (validation)
+validation_idx = 4 # None (forecast), 1, 2, 3, 4 (validation)
 end_train_epiweek = 25
 start_predict_epiweek = 41
 end_predict_epiweek = 40
@@ -68,6 +68,8 @@ def negbinom_log_likelihood(params, x, weights):
 # load data
 data = pd.read_csv('../data/raw/dengue.csv.gz', compression='gzip', dtype={'epiweek': str})
 
+# extract index 
+index_ufs = data[['uf', 'uf_code']].drop_duplicates().reset_index()[['uf', 'uf_code']]
 
 # aggregate by UF code (changed from abbreviation 2026)
 data = data[['epiweek', 'uf_code', 'casos']].groupby(by=['epiweek', 'uf_code']).sum().reset_index()
@@ -190,11 +192,11 @@ for uf in ufs:
     # visualise median
     ax.plot(epiweek_weeks, median, color='red', linestyle='--')
     # make figure pretty
-    ax.set_title(f'{uf}')
+    ax.set_title(f'{index_ufs[index_ufs['uf_code'] == uf]['uf'].values[0]}')
     ax.set_xlabel('CDC epiweek (-)')
     ax.set_ylabel('DENV inc. (per week)')
     plt.gca().xaxis.set_major_locator(ticker.MaxNLocator(nbins=6))
     plt.tight_layout()
-    plt.savefig(fig_path+f'/{uf}.pdf')
+    plt.savefig(fig_path+f'/{index_ufs[index_ufs['uf_code'] == uf]['uf'].values[0]}.pdf')
     plt.close()
 

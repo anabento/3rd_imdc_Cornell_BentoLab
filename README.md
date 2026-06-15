@@ -32,13 +32,6 @@ Setup/update the `environment`: All dependencies needed to run the scripts are c
   conda activate DENGUE_SPRINT
   ```
 
-Install the `epiweeks` package into the conda environment.
-
-  ```bash
-  conda activate DENGUE_SPRINT
-  pip install epiweeks
-  ```
-
 ## Data and Variables
 
 Only the `dengue.csv.gz` file (lives in `~/data/raw/dengue.csv.gz`) made available by the mosqlimate project was used. The dataset, along with an explanation of the variables in it, can be retrieved using the instructions under '2 - Using FTPWeb' on https://sprint.mosqlimate.org/data/.

@@ -39,7 +39,7 @@ if validation_indices:
         # set correct ID and description
         ID = f"endemic_channel-validation_{validx}"
         description = f"Validation {validx} (Cornell_BentoLab - NegBinom Endemic Channel). Authored by Tijs W. Alleman & Ana I. Bento."
-        commit = "36c4db312b09df8dec4786cb9380617fe68de2e0"
+        commit = "ffd84d65866020c8271669cfd71132057aa50af0"
         # load validation experiment data
         forecast = pd.read_csv(f'../data/interim/{ID}.csv', index_col=0)
         # get the ufs..

@@ -56,7 +56,7 @@ if validation_indices:
                 disease = 'A90', # dengue
                 case_definition = 'probable',
                 adm_level=1,
-                adm_1=f'{uf}',
+                adm_1=uf,
                 published = True,
                 prediction = df,
                 ) 

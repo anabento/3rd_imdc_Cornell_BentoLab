@@ -21,7 +21,7 @@ from scipy.optimize import minimize
 ##############
 
 challenge_year = 2026
-validation_idx = 4 # None (forecast), 1, 2, 3, 4 (validation)
+validation_idx = 1 # None (forecast), 1, 2, 3, 4 (validation)
 end_train_epiweek = 25
 start_predict_epiweek = 41
 end_predict_epiweek = 40
@@ -68,8 +68,12 @@ def negbinom_log_likelihood(params, x, weights):
 # load data
 data = pd.read_csv('../data/raw/dengue.csv.gz', compression='gzip', dtype={'epiweek': str})
 
-# aggregate by UF
-data = data[['epiweek', 'uf', 'casos']].groupby(by=['epiweek', 'uf']).sum().reset_index()
+
+# aggregate by UF code (changed from abbreviation 2026)
+data = data[['epiweek', 'uf_code', 'casos']].groupby(by=['epiweek', 'uf_code']).sum().reset_index()
+
+# rename 'uf_code' to 'uf' for simplicity
+data = data.rename(columns={'uf_code': 'uf'})
 
 # split epiweek year and month
 data['epiweek_year'] = data['epiweek'].apply(lambda x: int(x[:-2]))

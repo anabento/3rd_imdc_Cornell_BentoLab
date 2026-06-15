@@ -56,3 +56,10 @@ Only data up to EW25 were used to generate predictions from EW 41 of the same ye
 ## Predictive uncertainty
 
 The fitted negative binomial was used to generate quantiles using the `scipy.nbinom.ppf()` function.
+
+## How to submit (2026)
+
+- Pip install `mosqlient` package in conda environment.
+- Retrieve API key from Ana's Mosqclimate account. Log into https://mosqlimate.org using GH of @anabento. Go to "Auth" tab in profile overview.
+- Paste API key in the submission script `~/Demo Notebooks/upload_model.py`.
+- Run `~/Demo Notebooks/upload_model.py` to upload the model and then the forecast. 

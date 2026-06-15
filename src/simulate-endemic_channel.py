@@ -68,8 +68,14 @@ def negbinom_log_likelihood(params, x, weights):
 # load data
 data = pd.read_csv('../data/raw/dengue.csv.gz', compression='gzip', dtype={'epiweek': str})
 
-# aggregate by UF
-data = data[['epiweek', 'uf', 'casos']].groupby(by=['epiweek', 'uf']).sum().reset_index()
+# extract index 
+index_ufs = data[['uf', 'uf_code']].drop_duplicates().reset_index()[['uf', 'uf_code']]
+
+# aggregate by UF code (changed from abbreviation 2026)
+data = data[['epiweek', 'uf_code', 'casos']].groupby(by=['epiweek', 'uf_code']).sum().reset_index()
+
+# rename 'uf_code' to 'uf' for simplicity
+data = data.rename(columns={'uf_code': 'uf'})
 
 # split epiweek year and month
 data['epiweek_year'] = data['epiweek'].apply(lambda x: int(x[:-2]))
@@ -154,7 +160,7 @@ for ew in output['epiweek_week'].unique():
 # remove 'epiweek_week' column
 output = output.drop('epiweek_week', axis=1)
 # save the result
-output.to_csv(os.path.join(output_dir, f'baseline_model-{ID}.csv'))
+output.to_csv(os.path.join(output_dir, f'endemic_channel-{ID}.csv'))
 
 
 ##########################
@@ -186,11 +192,11 @@ for uf in ufs:
     # visualise median
     ax.plot(epiweek_weeks, median, color='red', linestyle='--')
     # make figure pretty
-    ax.set_title(f'{uf}')
+    ax.set_title(f'{index_ufs[index_ufs['uf_code'] == uf]['uf'].values[0]}')
     ax.set_xlabel('CDC epiweek (-)')
     ax.set_ylabel('DENV inc. (per week)')
     plt.gca().xaxis.set_major_locator(ticker.MaxNLocator(nbins=6))
     plt.tight_layout()
-    plt.savefig(fig_path+f'/{uf}.pdf')
+    plt.savefig(fig_path+f'/{index_ufs[index_ufs['uf_code'] == uf]['uf'].values[0]}.pdf')
     plt.close()
 

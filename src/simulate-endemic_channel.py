@@ -1,9 +1,10 @@
 """
-This script simulates a baseline model for the infodengue-mosqlimate challenge; the model is a negative binomial distribution fit to the weekly dengue incidence from 2010-2025
+This script simulates an endemic channel (baseline) model for the infodengue-mosqlimate challenge;
+Uncertainty is quantified by fitting a negative binomial distribution to the numer of cases in a given epiweek across all years in the training dataset
 """
 
 __author__      = "Tijs Alleman"
-__copyright__   = "Copyright (c) 2025 by T.W. Alleman, Bento Lab, Cornell University CVM Public Health. All Rights Reserved."
+__copyright__   = "Copyright (c) 2026 by T.W. Alleman, Bento Lab, Cornell University CVM Public Health. All Rights Reserved."
 
 import os
 import numpy as np
@@ -19,14 +20,16 @@ from scipy.optimize import minimize
 ## settings ##
 ##############
 
-validation_idx = None  # None (forecast), 1, 2 or 3 (validation)
+challenge_year = 2026
+validation_idx = 1  # None (forecast), 1, 2, 3, 4 (validation)
 end_train_epiweek = 25
 start_predict_epiweek = 41
 end_predict_epiweek = 40
+validation_indices = np.arange(1,challenge_year-2021)
 
 if validation_idx:
     # check user input
-    assert validation_idx in [1,2,3], "'validation' must be equal to 1, 2 or 3."
+    assert validation_idx in validation_indices, f"'validation' must be in: {validation_indices}."
     # set ID and training dates for validation
     ID = f'validation_{validation_idx}'
     end_train_year = 2021 + validation_idx
@@ -35,13 +38,19 @@ if validation_idx:
 else:
     # set ID and training dates for forecast 
     ID = f'forecast'
-    validation_idx = 4
+    validation_idx = len(validation_indices) + 1
     end_train_year = 2021 + validation_idx
     start_predict_year = 2021 + validation_idx
     end_predict_year = 2021 + validation_idx + 1
 
 # desired quantiles
 quantiles = [0.025, 0.05, 0.10, 0.25, 0.50, 0.75, 0.90, 0.95, 0.975]
+
+# output directories
+abs_dir = os.path.dirname(__file__)
+output_dir = os.path.join(abs_dir, f'../data/interim/model_output/sprint_{challenge_year}')
+fig_path = os.path.join(output_dir, f'fig/{ID}')
+os.makedirs(fig_path, exist_ok=True) 
 
 
 #############################################
@@ -146,19 +155,12 @@ for ew in output['epiweek_week'].unique():
 # remove 'epiweek_week' column
 output = output.drop('epiweek_week', axis=1)
 # save the result
-output.to_csv(f'../data/interim/model_output/sprint_2025/baseline_model-{ID}.csv')
+output.to_csv(os.path.join(output_dir, f'baseline_model-{ID}.csv'))
 
 
 ##########################
 ## save a visualisation ##
 ##########################
-
-# Make the folder structure to save results
-## define figure path
-fig_path=f'../data/interim/model_output/sprint_2025/fig/{ID}/' # Path to backend
-## check if samples folder exists, if not, make it
-if not os.path.exists(fig_path):
-    os.makedirs(fig_path)
 
 # plot result per uf
 for uf in ufs:

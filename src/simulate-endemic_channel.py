@@ -176,11 +176,11 @@ for uf in ufs:
         # plot data
         ax.scatter(int(epiweek_week) * np.ones(len(x)), x, color='black', alpha=0.2, facecolors='none')
         # get 50% and 95% quantiles
-        median.append(int(results[((results['uf'] == uf) & (results['epiweek_week'] == epiweek_week) & (results['quantile'] == 0.50))]['casos'].values))
-        ll_50.append(int(results[((results['uf'] == uf) & (results['epiweek_week'] == epiweek_week) & (results['quantile'] == 0.25))]['casos'].values))
-        ul_50.append(int(results[((results['uf'] == uf) & (results['epiweek_week'] == epiweek_week) & (results['quantile'] == 0.75))]['casos'].values))
-        ll_95.append(int(results[((results['uf'] == uf) & (results['epiweek_week'] == epiweek_week) & (results['quantile'] == 0.025))]['casos'].values))
-        ul_95.append(int(results[((results['uf'] == uf) & (results['epiweek_week'] == epiweek_week) & (results['quantile'] == 0.975))]['casos'].values))
+        median.append(int(results[((results['uf'] == uf) & (results['epiweek_week'] == epiweek_week) & (results['quantile'] == 0.50))]['casos'].values[0]))
+        ll_50.append(int(results[((results['uf'] == uf) & (results['epiweek_week'] == epiweek_week) & (results['quantile'] == 0.25))]['casos'].values[0]))
+        ul_50.append(int(results[((results['uf'] == uf) & (results['epiweek_week'] == epiweek_week) & (results['quantile'] == 0.75))]['casos'].values[0]))
+        ll_95.append(int(results[((results['uf'] == uf) & (results['epiweek_week'] == epiweek_week) & (results['quantile'] == 0.025))]['casos'].values[0]))
+        ul_95.append(int(results[((results['uf'] == uf) & (results['epiweek_week'] == epiweek_week) & (results['quantile'] == 0.975))]['casos'].values[0]))
     # visualise quantiles
     ax.fill_between(epiweek_weeks, ll_50, ul_50, color='red', alpha=0.3)
     ax.fill_between(epiweek_weeks, ll_95, ul_95, color='red', alpha=0.1)
@@ -192,6 +192,6 @@ for uf in ufs:
     ax.set_ylabel('DENV inc. (per week)')
     plt.gca().xaxis.set_major_locator(ticker.MaxNLocator(nbins=6))
     plt.tight_layout()
-    plt.savefig(fig_path+f'{uf}.pdf')
+    plt.savefig(fig_path+f'/{uf}.pdf')
     plt.close()
 

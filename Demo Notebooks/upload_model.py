@@ -66,7 +66,7 @@ api_key = os.getenv('API_KEY')
 model_id = 158
 
 # define validation experiment indices..
-validation_indices = None # (forecast), or [1, 2, 3] (validation)
+validation_indices = None # (forecast), or [1, 2, 3, 4] (validation)
 
 # validation
 if validation_indices:
@@ -74,7 +74,7 @@ if validation_indices:
     for validx in validation_indices:
         # set correct ID and description
         ID = f"baseline_model-validation_{validx}"
-        description = f"Validation {validx} (Cornell PEH - NegBinom Baseline model). Authored by Tijs W. Alleman & Ana I. Bento."
+        description = f"Validation {validx} (Cornell_BentoLab - NegBinom Endemic Channel). Authored by Tijs W. Alleman & Ana I. Bento."
         commit = "4f65fd7af1bfa9c1a9b86469a798179b666e2be7"
         # load validation experiment data
         forecast = pd.read_csv(f'../data/interim/{ID}.csv', index_col=0)
@@ -97,7 +97,7 @@ if validation_indices:
 else:
     # set correct ID and description
     ID = f'baseline_model-forecast'
-    description = f'Forecast (Cornell PEH - NegBinom Baseline model). Authored by Tijs W. Alleman & Ana I. Bento.'
+    description = f'Forecast (Cornell_BentoLab - NegBinom Endemic Channel). Authored by Tijs W. Alleman & Ana I. Bento.'
     commit = 'e90b5c07283944dcdd0dedc404aff8fcce8146ce'
     # load validation experiment data
     forecast = pd.read_csv(f'../data/interim/{ID}.csv', index_col=0)
